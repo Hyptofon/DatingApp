@@ -1,0 +1,338 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;600;700;900&display=swap');
+@font-face {
+  font-family: 'Bomber Balloon'; 
+  src: url('fonts/bomber-balloon.ttf') format('truetype'); 
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+    background-color: #f5f5f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    opacity: 0;
+    animation: fadeIn 0.3s ease-in forwards;
+}
+
+/* --- 2. Анімації --- */
+@keyframes slideInRight {
+    from {
+        transform: translateX(30%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOutLeft {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(-30%);
+        opacity: 0;
+    }
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes formFadeOut {
+    from { opacity: 1; transform: scale(1); }
+    to { opacity: 0; transform: scale(0.98); }
+}
+
+@keyframes formFadeIn {
+    from { opacity: 0; transform: scale(0.98); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.frame {
+    width: 375px;
+    height: 812px;
+    background-color: #FFFFFF;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden; 
+}
+
+.frame--auth {
+    background-color: #FF5F5F;
+}
+
+.content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 80px 30px 30px;
+}
+
+.illustration {
+    width: 280px;
+    height: auto;
+    margin-bottom: 40px;
+}
+
+.title-box {
+    background-color: #FF5F5F;
+    color: #FFFFFF;
+    font-weight: 700;
+    font-size: 20px;
+    letter-spacing: 1px;
+    padding: 13px 15px;
+    border-radius: 5px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.description {
+    font-size: 10px;
+    line-height: 14px;
+    color: #5A5A64;
+    text-align: center;
+    max-width: 300px;
+}
+
+.navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 16px 40px;
+}
+
+.btn-skip,
+.btn-next {
+    width: 70px;
+    height: 30px;
+    border-radius: 5px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1.2px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.btn-skip {
+    background-color: #F5F5FF;
+    color: #32323C;
+}
+
+.btn-skip:hover { background-color: #e5e5f5; }
+
+.btn-next {
+    background-color: #FF5F5F;
+    color: #FFFFFF;
+}
+
+.btn-next:hover { background-color: #ff4545; }
+
+.pagination {
+    display: flex;
+    gap: 20px;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    background-color: #F5F5FF;
+    border-radius: 1px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.dot.active {
+    background-color: #FF5F5F;
+}
+
+.header {
+    padding: 60px 30px 40px;
+    text-align: center;
+}
+
+.logo-container {
+    margin-bottom: 40px;
+}
+
+.heart-logo {
+    margin: 0 auto 20px;
+    width: 60px;
+    height: 60px;
+}
+
+.logo-text {
+    font-family: 'Bomber Balloon', sans-serif;
+    font-size: 50px;
+    font-weight: 900;
+    color: #FFFFFF;
+    letter-spacing: 2.5px;
+}
+
+.tab-buttons {
+    display: flex;
+    gap: 20px;
+    position: relative;
+    margin-left: 19px;
+}
+
+.tab-buttons::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 130px; 
+    height: 30px; 
+    border-radius: 5px;
+    background-color: #FFFFFF;
+    transition: transform 0.4s cubic-bezier(0.785, 0.135, 0.15, 0.86); 
+}
+.tab-buttons.register-active::before {
+    transform: translateX(150px); 
+}
+
+.tab-btn {
+    width: 130px;
+    height: 30px;
+    border-radius: 5px;
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: 1.2px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #FFFFFF; 
+    background-color: transparent; 
+
+    z-index: 1;
+    transition: color 0.4s ease-in-out; 
+ 
+}
+
+.tab-btn.active {
+    color: #FF5F5F; 
+}
+
+.tab-btn:hover { 
+    background-color: transparent; 
+}
+.tab-btn.active:hover {
+    background-color: transparent; 
+}
+
+.form {
+    padding: 0 48px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.input-field {
+    width: 280px;
+    height: auto;
+    background-color: #FFFFFF;
+    border: none;
+    border-radius: 5px;
+    padding: 16px;
+    font-size: 15px;
+    letter-spacing: 1.5px;
+    color: #32323C;
+    outline: none;
+}
+
+.input-field::placeholder { color: #32323C; }
+
+.forgot-link {
+    color: #FFFFFF;
+    font-size: 10px;
+    text-decoration: none;
+    text-align: right;
+    margin-top: -10px;
+}
+
+.forgot-link:hover { text-decoration: underline; }
+
+.btn-submit {
+    width: 280px;
+    height: auto;
+    background-color: #FFFFFF;
+    border: none;
+    border-radius: 5px;
+    padding: 16px;
+    font-size: 15px;
+    font-weight: 900;
+    letter-spacing: 1.5px;
+    color: #FF5F5F;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Lato', sans-serif;
+    margin-top: 10px;
+}
+
+.btn-submit:hover {
+    background-color: #f5f5f5;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.bottom-text {
+    color: #FFFFFF;
+    font-size: 10px;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.bottom-text a {
+    color: #FFFFFF;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.bottom-text a:hover { text-decoration: underline; }
+
+.form-container {
+    position: relative;
+    padding: 0 150px;
+    min-height: 280px; 
+}
+
+.form {
+    padding: 0; 
+    position: absolute;
+    top: 0;
+    left: 48px; 
+    right: 48px;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.form.hidden {
+    display: none;
+}
+
+.form.form-exit {
+    animation: formFadeOut 0.2s ease-out forwards;
+}
+
+.form.form-enter {
+    animation: formFadeIn 0.2s ease-in forwards;
+}
