@@ -27,10 +27,10 @@ body {
     opacity: 0;
     animation: fadeIn 0.3s ease-in forwards;
     overflow: hidden;
-    position: fixed; /* ДОДАНО */
-    width: 100%; /* ДОДАНО */
-    top: 0; /* ДОДАНО */
-    left: 0; /* ДОДАНО */
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
 }
 
 /* --- 2. Анімації --- */
@@ -361,9 +361,8 @@ body {
 
     .frame {
         width: 100%;
-        /* height: 100%; */ /* --- ЗМІНЕНО --- */
-        height: 100vh; /* Фоллбек для старих браузерів */
-        height: 100dvh; /* Нова одиниця: динамічна висота в'юпорту */
+        height: 100vh;
+        height: 100dvh;
         border-radius: 0;
         box-shadow: none;
     }
@@ -372,22 +371,20 @@ body {
         background-color: #FF5F5F;
     }
 
-    /* --- ДОДАНО: Адаптація контенту всередині .frame --- */
     .content {
-        padding: 80px 8% 30px; /* Використовуємо % для гнучких відступів */
+        padding: 80px 8% 30px;
     }
 
     .illustration {
-        width: 100%; /* Робимо ілюстрацію гнучкою */
-        max-width: 280px; /* Але не більшою за оригінал */
+        width: 100%;
+        max-width: 280px;
         height: auto;
     }
 
     .description {
-        max-width: 100%; /* Дозволяємо опису заповнити простір */
+        max-width: 100%;
     }
 
-    /* Адаптація для сторінки авторизації */
     .header {
         padding: 60px 8% 40px;
     }
@@ -402,10 +399,8 @@ body {
         right: 10%;
     }
     .form-container {
-        padding: 0; /* Прибираємо фіксований відступ */
+        padding: 0;
     }
-    /* --- КІНЕЦЬ ДОДАНОГО БЛОКУ --- */
-
 
     @keyframes slideInRight {
         from {
@@ -430,11 +425,9 @@ body {
     }
 }
 
-/* --- ДОДАНО: Адаптація для дуже маленьких екранів --- */
 @media (max-width: 360px) {
-    /* Онбордінг */
     .content {
-        padding: 40px 6% 20px; /* Зменшуємо відступи */
+        padding: 40px 6% 20px;
     }
 
     .illustration {
@@ -442,26 +435,25 @@ body {
     }
 
     .title-box {
-        font-size: 18px; /* Зменшуємо шрифт */
+        font-size: 18px;
         margin-bottom: 20px;
     }
 
     .navigation {
-        padding: 0 16px 20px; /* Зменшуємо нижній відступ */
-        gap: 10px; /* Додаємо проміжок, щоб кнопки не злипались */
+        padding: 0 16px 20px;
+        gap: 10px;
     }
 
     .pagination {
-        gap: 15px; /* Зменшуємо проміжок */
+        gap: 15px;
     }
 
     .btn-skip,
     .btn-next {
-        width: 65px; /* Трохи вужчі кнопки */
+        width: 65px;
         font-size: 11px;
     }
 
-    /* Сторінка авторизації */
     .header {
         padding: 40px 6% 30px;
     }
@@ -471,7 +463,7 @@ body {
     }
 
     .logo-text {
-        font-size: 44px; /* Менший логотип */
+        font-size: 44px;
     }
 
     .tab-buttons {
@@ -481,10 +473,10 @@ body {
     }
 
     .tab-buttons::before {
-        width: calc(50% - 5px); /* Адаптуємо під новий 'gap' */
+        width: calc(50% - 5px);
     }
     .tab-buttons.register-active::before {
-        transform: translateX(calc(100% + 10px)); /* Адаптуємо під новий 'gap' */
+        transform: translateX(calc(100% + 10px));
     }
 
     .tab-btn {

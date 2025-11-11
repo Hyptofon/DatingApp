@@ -1,7 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     const frame = document.querySelector('.frame');
 
-    // ВИПРАВЛЕННЯ: Скидаємо позицію скролу при завантаженні сторінки
     window.scrollTo(0, 0);
     document.documentElement.scrollTop = 0;
     document.body.scrollTop = 0;
@@ -73,7 +72,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // ВИПРАВЛЕННЯ: Блокуємо скрол body/html, якщо він намагається з'явитись
     window.addEventListener('scroll', function() {
         window.scrollTo(0, 0);
     });
