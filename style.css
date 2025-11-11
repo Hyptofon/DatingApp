@@ -1,8 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;600;700;900&display=swap');
 @font-face {
-  font-family: 'Bomber Balloon'; 
-  src: url('fonts/bomber-balloon.ttf') format('truetype'); 
+    font-family: 'Bomber Balloon';
+    src: url('fonts/bomber-balloon.ttf') format('truetype');
 }
+
+html, body {
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -15,9 +23,14 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
+    height: 100%;
     opacity: 0;
     animation: fadeIn 0.3s ease-in forwards;
+    overflow: hidden;
+    position: fixed; /* ДОДАНО */
+    width: 100%; /* ДОДАНО */
+    top: 0; /* ДОДАНО */
+    left: 0; /* ДОДАНО */
 }
 
 /* --- 2. Анімації --- */
@@ -71,7 +84,7 @@ body {
     display: flex;
     flex-direction: column;
     position: relative;
-    overflow: hidden; 
+    overflow: hidden;
 }
 
 .frame--auth {
@@ -84,6 +97,7 @@ body {
     flex-direction: column;
     align-items: center;
     padding: 80px 30px 30px;
+    overflow-y: auto;
 }
 
 .illustration {
@@ -193,21 +207,22 @@ body {
     display: flex;
     gap: 20px;
     position: relative;
-    margin-left: 19px;
+    margin-left: 48px;
+    margin-right: 48px;
 }
 
 .tab-buttons::before {
     content: '';
     position: absolute;
     top: 0;
-    width: 130px; 
-    height: 30px; 
+    width: calc(50% - 10px);
+    height: 30px;
     border-radius: 5px;
     background-color: #FFFFFF;
-    transition: transform 0.4s cubic-bezier(0.785, 0.135, 0.15, 0.86); 
+    transition: transform 0.4s cubic-bezier(0.785, 0.135, 0.15, 0.86);
 }
 .tab-buttons.register-active::before {
-    transform: translateX(150px); 
+    transform: translateX(calc(100% + 20px));
 }
 
 .tab-btn {
@@ -221,23 +236,23 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #FFFFFF; 
-    background-color: transparent; 
+    color: #FFFFFF;
+    background-color: transparent;
 
     z-index: 1;
-    transition: color 0.4s ease-in-out; 
- 
+    transition: color 0.4s ease-in-out;
+
 }
 
 .tab-btn.active {
-    color: #FF5F5F; 
+    color: #FF5F5F;
 }
 
-.tab-btn:hover { 
-    background-color: transparent; 
+.tab-btn:hover {
+    background-color: transparent;
 }
 .tab-btn.active:hover {
-    background-color: transparent; 
+    background-color: transparent;
 }
 
 .form {
@@ -248,7 +263,7 @@ body {
 }
 
 .input-field {
-    width: 280px;
+    width: 100%;
     height: auto;
     background-color: #FFFFFF;
     border: none;
@@ -273,7 +288,7 @@ body {
 .forgot-link:hover { text-decoration: underline; }
 
 .btn-submit {
-    width: 280px;
+    width: 100%;
     height: auto;
     background-color: #FFFFFF;
     border: none;
@@ -313,14 +328,14 @@ body {
 .form-container {
     position: relative;
     padding: 0 150px;
-    min-height: 280px; 
+    min-height: 280px;
 }
 
 .form {
-    padding: 0; 
+    padding: 0;
     position: absolute;
     top: 0;
-    left: 48px; 
+    left: 48px;
     right: 48px;
     transition: opacity 0.3s ease, transform 0.3s ease;
 }
@@ -335,4 +350,149 @@ body {
 
 .form.form-enter {
     animation: formFadeIn 0.2s ease-in forwards;
+}
+
+
+@media (max-width: 500px) {
+    body {
+        background-color: #fff;
+        align-items: flex-start;
+    }
+
+    .frame {
+        width: 100%;
+        /* height: 100%; */ /* --- ЗМІНЕНО --- */
+        height: 100vh; /* Фоллбек для старих браузерів */
+        height: 100dvh; /* Нова одиниця: динамічна висота в'юпорту */
+        border-radius: 0;
+        box-shadow: none;
+    }
+
+    body:has(.frame--auth) {
+        background-color: #FF5F5F;
+    }
+
+    /* --- ДОДАНО: Адаптація контенту всередині .frame --- */
+    .content {
+        padding: 80px 8% 30px; /* Використовуємо % для гнучких відступів */
+    }
+
+    .illustration {
+        width: 100%; /* Робимо ілюстрацію гнучкою */
+        max-width: 280px; /* Але не більшою за оригінал */
+        height: auto;
+    }
+
+    .description {
+        max-width: 100%; /* Дозволяємо опису заповнити простір */
+    }
+
+    /* Адаптація для сторінки авторизації */
+    .header {
+        padding: 60px 8% 40px;
+    }
+
+    .tab-buttons {
+        margin-left: 10%;
+        margin-right: 10%;
+    }
+
+    .form {
+        left: 10%;
+        right: 10%;
+    }
+    .form-container {
+        padding: 0; /* Прибираємо фіксований відступ */
+    }
+    /* --- КІНЕЦЬ ДОДАНОГО БЛОКУ --- */
+
+
+    @keyframes slideInRight {
+        from {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+        to {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+
+    @keyframes slideOutLeft {
+        from {
+            transform: translateX(0);
+            opacity: 1;
+        }
+        to {
+            transform: translateX(-100%);
+            opacity: 0;
+        }
+    }
+}
+
+/* --- ДОДАНО: Адаптація для дуже маленьких екранів --- */
+@media (max-width: 360px) {
+    /* Онбордінг */
+    .content {
+        padding: 40px 6% 20px; /* Зменшуємо відступи */
+    }
+
+    .illustration {
+        margin-bottom: 30px;
+    }
+
+    .title-box {
+        font-size: 18px; /* Зменшуємо шрифт */
+        margin-bottom: 20px;
+    }
+
+    .navigation {
+        padding: 0 16px 20px; /* Зменшуємо нижній відступ */
+        gap: 10px; /* Додаємо проміжок, щоб кнопки не злипались */
+    }
+
+    .pagination {
+        gap: 15px; /* Зменшуємо проміжок */
+    }
+
+    .btn-skip,
+    .btn-next {
+        width: 65px; /* Трохи вужчі кнопки */
+        font-size: 11px;
+    }
+
+    /* Сторінка авторизації */
+    .header {
+        padding: 40px 6% 30px;
+    }
+
+    .logo-container {
+        margin-bottom: 30px;
+    }
+
+    .logo-text {
+        font-size: 44px; /* Менший логотип */
+    }
+
+    .tab-buttons {
+        margin-left: 6%;
+        margin-right: 6%;
+        gap: 10px;
+    }
+
+    .tab-buttons::before {
+        width: calc(50% - 5px); /* Адаптуємо під новий 'gap' */
+    }
+    .tab-buttons.register-active::before {
+        transform: translateX(calc(100% + 10px)); /* Адаптуємо під новий 'gap' */
+    }
+
+    .tab-btn {
+        font-size: 11px;
+    }
+
+    .form {
+        left: 6%;
+        right: 6%;
+    }
 }

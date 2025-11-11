@@ -1,5 +1,11 @@
 document.addEventListener('DOMContentLoaded', function() {
     const frame = document.querySelector('.frame');
+
+    // ВИПРАВЛЕННЯ: Скидаємо позицію скролу при завантаженні сторінки
+    window.scrollTo(0, 0);
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+
     function transitionTo(url, animationName, animationProps) {
         if (!frame) {
             window.location.href = url;
@@ -10,14 +16,14 @@ document.addEventListener('DOMContentLoaded', function() {
             frame.removeEventListener('animationend', handleAnimationEnd);
             window.location.href = url;
         };
-        
+
         frame.addEventListener('animationend', handleAnimationEnd);
         frame.style.animation = `${animationName} ${animationProps}`;
     }
 
     if (frame) {
         const isAuthPage = frame.classList.contains('frame--auth');
-        const animation = isAuthPage 
+        const animation = isAuthPage
             ? 'fadeIn 0.5s cubic-bezier(0.39, 0.575, 0.565, 1) forwards'
             : 'slideInRight 0.5s cubic-bezier(0.39, 0.575, 0.565, 1) forwards';
         frame.style.animation = animation;
@@ -65,5 +71,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 alert('Form submitted! (This is a demo)');
             }, 1500);
         });
+    });
+
+    // ВИПРАВЛЕННЯ: Блокуємо скрол body/html, якщо він намагається з'явитись
+    window.addEventListener('scroll', function() {
+        window.scrollTo(0, 0);
     });
 });
