@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fated - Meet New People</title>
+  <link rel="stylesheet" href="/src/style.css">
+</head>
+<body class="flex justify-center items-center h-full opacity-0 animate-fade-in overflow-hidden fixed w-full top-0 left-0">
+<div class="frame w-[375px] h-[812px] bg-white shadow-[0_4px_20px_rgba(0,0,0,0.1)] flex flex-col relative overflow-hidden max-[500px]:w-full max-[500px]:h-screen max-[500px]:rounded-none max-[500px]:shadow-none">
+  <div class="content flex-1 flex flex-col items-center px-[30px] pt-[80px] pb-[30px] overflow-y-auto max-[500px]:px-[8%] max-[500px]:pt-[80px] max-[500px]:pb-[30px] max-[360px]:pt-[40px] max-[360px]:pb-[20px] max-[360px]:px-[6%]">
+    <img src="/img/illustration1.png" alt="Meet New People" class="illustration w-[280px] h-auto mb-10 max-[500px]:w-full max-[500px]:max-w-[280px] max-[360px]:mb-[30px]">
+    <div class="title-box bg-primary text-white font-bold text-xl tracking-wider py-[13px] px-[15px] rounded-[5px] mb-[30px] text-center max-[360px]:text-lg max-[360px]:mb-5">
+      MEET NEW PEOPLE
+    </div>
+    <p class="description text-[10px] leading-[14px] text-text-light text-center max-w-[300px] max-[500px]:max-w-full">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean
+      lectus tellus quis est pharetra fermentum. Curabitur dapibus
+      neque id lacus hendrerit rhoncus.
+    </p>
+  </div>
+
+  <div class="navigation flex justify-between items-center px-4 pb-10 max-[360px]:pb-5 max-[360px]:gap-[10px]">
+    <a href="/auth.html#register" class="btn-skip w-[70px] h-[30px] rounded-[5px] text-xs font-semibold tracking-widest no-underline flex items-center justify-center bg-bg-light text-text-main transition-all duration-300 hover:bg-bg-light-hover max-[360px]:w-[65px] max-[360px]:text-[11px]">
+      SKIP
+    </a>
+    <div class="pagination flex gap-5 max-[360px]:gap-[15px]">
+      <span class="dot w-[10px] h-[10px] bg-bg-light rounded-[1px] transition-all duration-300 cursor-pointer !bg-primary" data-target="index.html"></span>
+      <span class="dot w-[10px] h-[10px] bg-bg-light rounded-[1px] transition-all duration-300 cursor-pointer" data-target="onboarding2.html"></span>
+      <span class="dot w-[10px] h-[10px] bg-bg-light rounded-[1px] transition-all duration-300 cursor-pointer" data-target="onboarding3.html"></span>
+    </div>
+    <a href="/onboarding2.html" class="btn-next w-[70px] h-[30px] rounded-[5px] text-xs font-semibold tracking-widest no-underline flex items-center justify-center bg-primary text-white transition-all duration-300 hover:bg-primary-hover max-[360px]:w-[65px] max-[360px]:text-[11px]">
+      NEXT
+    </a>
+  </div>
+</div>
+<script type="module" src="/src/animations.js"></script>
+</body>
+</html>
