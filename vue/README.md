@@ -1,48 +1,49 @@
-# vue-lab
+# Звіти з лабораторних робіт Vue 3
 
-This template should help get you started developing with Vue 3 in Vite.
+## Лабораторна 4. Створення веб-застосунку з використанням Vue 3, TypeScript та Vue Router
 
-## Recommended IDE Setup
+### Опис виконаних кроків:
+1. Створив проєкт за допомогою `npm create vue@latest vue`.
+2. Увімкнув TypeScript та Vue Router.
+3. Запустив проєкт (`npm install`, `npm run dev`).
+4. Створив нову сторінку `ContactView.vue`.
+5. Зареєстрував маршрут `/contact` у `router/index.ts`.
+6. Додав посилання у `App.vue`.
+7. Створив компонент `UserCard.vue` з типізованими пропсами.
+8. Використав його на сторінці Contact.
+9. Добавив помилку, щоб показати чітку помилку типізації.
 
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+### Помилка типізації
+Текст помилки (коментарем на сторінці), яку отримано в Частині 4 (при спробі передати число замість boolean):
 
-## Recommended Browser Setup
+### Висновки:
 
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd) 
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
+* TypeScript забезпечує перевірку типів і зменшує кількість помилок.
+* Vue Router дозволяє створювати SPA з навігацією без перезавантаження сторінки.
 
-## Type Support for `.vue` Imports in TS
-
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vite.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
+```html
+   <UserCard username="Student_Error" :isActive="100" /> 
+   Помилка Vue: Type 'number' is not assignable to type 'boolean'. 
 ```
 
-### Compile and Hot-Reload for Development
+-----
 
-```sh
-npm run dev
-```
+## Лабораторна 5. Інтеграція Tailwind CSS у проєкт Vue 3 та рефакторинг стилів
 
-### Type-Check, Compile and Minify for Production
+### 1\. Інсталяція та налаштування Tailwind CSS v4
 
-```sh
-npm run build
-```
+Виконано встановлення пакетів та додавання плагіна у Vite, а підключення стилів здійснено через `@import "tailwindcss";` у файлі `index.css`. Окремий файл `tailwind.config.js` більше не потрібен, оскільки у версії 4 вся конфігурація пишеться безпосередньо в CSS.
 
-### Lint with [ESLint](https://eslint.org/)
+### 2\. Реалізація умовних стилів у UserCard.vue
 
-```sh
-npm run lint
-```
+Замість блоку `<style scoped>` використано динамічний біндінг класів, що дозволяє змінювати вигляд компонентів (наприклад, кольори рамок) залежно від пропсу `isActive` виключно засобами Tailwind.
+
+### 3\. Переваги та недоліки utility-first підходу
+
+Основною перевагою є швидкість розробки без написання кастомного CSS, тоді як недоліком може стати перевантаження HTML-шаблону великою кількістю класів.
+
+### 4\. (Бонус) Темна тема
+
+Темна тема реалізована за допомогою префіксу `dark:`, який у 4-й версії працює автоматично.
+Переглянути результат можна за посиланям на Vercel у головному README.md
+
