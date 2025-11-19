@@ -1,0 +1,92 @@
+body {
+    background-color: #1f1e1e;
+    color: #ffffff;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    padding: 20px;
+}
+
+/* Стилі посилань */
+a:link {
+    color: #ffa500; /* Колір звичайного посилання */
+}
+
+a:visited {
+    color: #aa00ff; /* Колір відвіданого посилання */
+}
+
+a:hover {
+    color: #00ff00; /* Колір при наведенні */
+}
+
+a:active {
+    color: #ff0000; /* Колір активного посилання */
+}
+
+/* Центрування заголовків H1 */
+h1 {
+    text-align: center;
+    color: #ffa500;
+}
+
+h2 {
+    text-align: center;
+}
+
+/* Стилі таблиці */
+.info-table {
+    width: 50%; /* Розмір 50% */
+    margin: 0 auto; /* Центрування */
+    border-collapse: collapse;
+}
+
+.info-table th,
+.info-table td {
+    border: 1px solid #444;
+    padding: 10px;
+    text-align: center;
+}
+
+/* Кольори заголовків таблиці */
+.header-teachers {
+    background-color: #ffcccc;
+    color: #8B0000;
+}
+
+.header-students {
+    background-color: #ccffcc;
+    color: #00008B;
+}
+
+/* Кольори комірок таблиці */
+.cell-teachers {
+    background-color: #ccccff;
+    color: #006400;
+}
+
+.cell-students {
+    background-color: #ffffcc;
+    color: #FF8C00;
+}
+
+/* Стилі списків */
+ul, ol, dl {
+    text-align: left;
+    display: inline-block;
+}
+
+/* Стилі зображень */
+img {
+    max-width: 100px;
+}
+
+/* Стилі секцій */
+section {
+    margin: 30px auto;
+    max-width: 800px;
+}
+
+/* Footer */
+footer {
+    margin-top: 50px;
+}
