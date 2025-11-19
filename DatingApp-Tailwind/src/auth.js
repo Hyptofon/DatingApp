@@ -6,44 +6,68 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let isAnimating = false;
 
-    const switchView = (targetView) => {
+    // Helper functions to manage classes safely
+    const showForm = (form) => {
+        form.classList.remove('hidden');
+        form.classList.add('active-form');
+    };
 
+    const hideForm = (form) => {
+        form.classList.add('hidden');
+        form.classList.remove('active-form');
+    };
+
+    const switchView = (targetView) => {
         if (isAnimating) {
             return;
         }
 
+        // Визначаємо поточну форму
         const currentView = targetView === 'login' ? 'register' : 'login';
         const currentForm = document.getElementById(`${currentView}-form`);
         const targetForm = document.getElementById(`${targetView}-form`);
 
+        // Якщо цільова форма вже активна - нічого не робимо
         if (targetForm.classList.contains('active-form')) {
             return;
         }
 
         isAnimating = true;
+
+        // 1. Оновлюємо таби (слайдер)
         tabContainer.classList.toggle('register-active', targetView === 'register');
         document.querySelector(`.tab-btn[data-form="${currentView}"]`).classList.remove('active');
         document.querySelector(`.tab-btn[data-form="${targetView}"]`).classList.add('active');
 
-        currentForm.classList.add('form-exit');
-        currentForm.classList.remove('active-form');
+        // 2. Анімація виходу поточної форми
+        // Додаємо клас анімації безпосередньо
+        currentForm.classList.add('animate-form-fade-out');
 
         const onExitAnimationEnd = () => {
-            currentForm.classList.remove('form-exit');
-            currentForm.classList.add('hidden');
+            // Очищаємо слухач подій
+            currentForm.removeEventListener('animationend', onExitAnimationEnd);
 
-            targetForm.classList.remove('hidden');
-            targetForm.classList.add('form-enter', 'active-form');
+            // Ховаємо поточну форму та прибираємо клас анімації
+            currentForm.classList.remove('animate-form-fade-out');
+            hideForm(currentForm);
 
-            targetForm.addEventListener('animationend', () => {
-                targetForm.classList.remove('form-enter');
+            // 3. Анімація появи нової форми
+            showForm(targetForm);
+            targetForm.classList.add('animate-form-fade-in');
+
+            const onEnterAnimationEnd = () => {
+                targetForm.removeEventListener('animationend', onEnterAnimationEnd);
+                targetForm.classList.remove('animate-form-fade-in');
                 isAnimating = false;
-            }, { once: true });
+            };
+
+            targetForm.addEventListener('animationend', onEnterAnimationEnd);
         };
 
-        currentForm.addEventListener('animationend', onExitAnimationEnd, { once: true });
+        currentForm.addEventListener('animationend', onExitAnimationEnd);
     };
 
+    // Навішуємо події на кнопки
     formSwitchLinks.forEach(link => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
@@ -51,16 +75,17 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // Початковий стан при завантаженні сторінки
     const initialView = window.location.hash === '#register' ? 'register' : 'login';
 
     if (initialView === 'register') {
-        loginForm.classList.add('hidden');
-        registerForm.classList.remove('hidden');
-        registerForm.classList.add('active-form');
+        hideForm(loginForm);
+        showForm(registerForm);
         tabContainer.classList.add('register-active');
         document.querySelector('.tab-btn[data-form="login"]').classList.remove('active');
         document.querySelector('.tab-btn[data-form="register"]').classList.add('active');
     } else {
-        loginForm.classList.add('active-form');
+        showForm(loginForm);
+        hideForm(registerForm);
     }
 });
