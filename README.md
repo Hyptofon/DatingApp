@@ -6,6 +6,7 @@
 | Назва папки | Опис | Демонстрація |
 | :--- | :--- | :---: |
 | **DatingApp-Tailwind** | Верстка макету з Figma за допомогою **Tailwind CSS** | [Переглянути](https://dating-app-nu-livid.vercel.app/) |
+| **DatingAppVue** | Реалізація застосунку на фреймворку **Vue.js** | [Переглянути](https://dating-app-m78j.vercel.app/) |
 | **vue** | Лабораторні роботи на фреймворку **Vue** | [Переглянути](https://dating-app-9ptd.vercel.app/) |
 | **DatingAppHtmlCssJs** | Проєкт реалізований на чистому (Vanilla) **HTML, CSS, JS** | — |
 | **webdemo3** | Лабораторна робота №3: Створення веб-сторінки (HTML та CSS) | — |
