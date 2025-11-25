@@ -1,0 +1,88 @@
+@import 'tailwindcss';
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;600;700;900&display=swap');
+
+@theme {
+  /* Кольори */
+  --color-primary: #ff5f5f;
+  --color-primary-hover: #ff4545;
+  --color-bg-main: #f5f5f5;
+  --color-text-main: #32323c;
+  --color-text-light: #5a5a64;
+  --color-bg-light: #f5f5ff;
+  --color-bg-light-hover: #e5e5f5;
+
+  /* Шрифти */
+  --font-lato: 'Lato', sans-serif;
+  --font-bomber: 'Bomber Balloon', sans-serif;
+}
+
+@font-face {
+  font-family: 'Bomber Balloon';
+  src: url('/fonts/bomber-balloon.ttf') format('truetype');
+}
+
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: var(--font-lato);
+    background-color: var(--color-bg-main);
+  }
+}
+
+@layer utilities {
+  /* Старі анімації залишаємо для сумісності, якщо десь використовуються */
+  .animate-fade-in {
+    animation: fadeIn 0.5s cubic-bezier(0.39, 0.575, 0.565, 1) forwards;
+  }
+}
+
+/* --- VUE TRANSITIONS (Нові плавні анімації) --- */
+
+/* 1. Анімація перемикання форм (Auth) */
+.form-fade-enter-active,
+.form-fade-leave-active {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  position: absolute; /* Важливо: дозволяє формам накладатися */
+  width: 100%;
+  left: 0;
+
+}
+
+/* Стан "до появи" і "після зникнення" */
+.form-fade-enter-from,
+.form-fade-leave-to {
+  opacity: 0;
+  transform: scale(0.98);
+}
+
+/* 2. Анімація слайдів (Onboarding) */
+.slide-page-enter-active,
+.slide-page-leave-active {
+  transition: all 0.5s cubic-bezier(0.39, 0.575, 0.565, 1);
+  position: absolute; /* Важливо для накладання слайдів */
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: white; /* Щоб прозорість не просвічувала старий слайд */
+}
+
+.slide-page-enter-from {
+  transform: translateX(100%);
+  opacity: 0;
+}
+
+.slide-page-leave-to {
+  transform: translateX(-100%);
+  opacity: 0; /* Додаємо opacity, щоб старий слайд не заважав новому */
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
