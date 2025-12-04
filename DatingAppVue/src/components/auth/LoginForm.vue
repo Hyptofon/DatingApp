@@ -1,5 +1,7 @@
 <script setup lang="ts">
-import { reactive } from 'vue'
+import { useForm } from 'vee-validate'
+import { toTypedSchema } from '@vee-validate/zod'
+import * as z from 'zod'
 import BaseInput from '@/components/ui/BaseInput.vue'
 import BaseButton from '@/components/ui/BaseButton.vue'
 
@@ -7,23 +9,58 @@ const emit = defineEmits<{
   (e: 'switch-to-register'): void
 }>()
 
-const loginData = reactive({ username: '', password: '' })
+const validationSchema = toTypedSchema(
+  z.object({
+    username: z.string().min(1, { message: "Ім'я користувача обов'язкове" }),
+    password: z.string().min(1, { message: "Пароль обов'язковий" })
+  })
+)
 
-const handleSubmit = () => {
-  console.log('Login Data:', loginData)
-  alert(`Login submitted for: ${loginData.username}`)
-}
+const { handleSubmit, errors, defineField } = useForm({
+  validationSchema
+})
+
+const [username, usernameAttrs] = defineField('username')
+const [password, passwordAttrs] = defineField('password')
+
+const onSubmit = handleSubmit((values) => {
+  console.group('Login Success')
+  console.log('Дані:', values)
+  console.groupEnd()
+
+  alert(`Login submitted for: ${values.username}`)
+})
 </script>
 
 <template>
   <form
-    @submit.prevent="handleSubmit"
+    @submit.prevent="onSubmit"
     class="form flex flex-col gap-5 w-full px-[48px] max-[500px]:px-[10%] max-[360px]:px-[6%]"
   >
-    <BaseInput v-model="loginData.username" placeholder="user name" />
-    <BaseInput v-model="loginData.password" type="password" placeholder="password" />
+    <div class="flex flex-col gap-1">
+      <BaseInput
+        v-model="username"
+        v-bind="usernameAttrs"
+        placeholder="user name"
+      />
+      <span v-if="errors.username" class="text-yellow-300 font-medium text-[11px] text-right">
+        {{ errors.username }}
+      </span>
+    </div>
 
-    <a href="#" class="forgot-link text-white text-[10px] no-underline text-right -mt-[10px] hover:underline">FORGOT PASSWORD?</a>
+    <div class="flex flex-col gap-1">
+      <BaseInput
+        v-model="password"
+        v-bind="passwordAttrs"
+        type="password"
+        placeholder="password"
+      />
+      <span v-if="errors.password" class="text-yellow-300 font-medium text-[11px] text-right">
+        {{ errors.password }}
+      </span>
+    </div>
+
+    <a href="#" class="forgot-link text-white text-[10px] no-underline text-right -mt-[5px] hover:underline">FORGOT PASSWORD?</a>
 
     <BaseButton type="submit">LOGIN</BaseButton>
 

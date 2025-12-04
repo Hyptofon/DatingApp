@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-
+import { ONBOARDING_STEPS } from '@/constants/onboarding'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -15,7 +15,7 @@ const router = createRouter({
       props: (route) => ({ step: Number(route.params.step) }),
       beforeEnter: (to, from, next) => {
         const step = Number(to.params.step)
-        if (step >= 1 && step <= 3) {
+        if (step >= 1 && step <= ONBOARDING_STEPS.length) {
           next()
         } else {
           next({ name: 'onboarding', params: { step: 1 } })
