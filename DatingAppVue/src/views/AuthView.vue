@@ -29,7 +29,9 @@ watch(() => route.hash, (newHash) => {
 <template>
   <TheFrame :is-auth="true">
     <AuthHeader>
-      <AuthTabs :active-view="activeView" @switch="switchView" />
+      <div class="w-full px-6">
+        <AuthTabs :active-view="activeView" @switch="switchView" />
+      </div>
     </AuthHeader>
 
     <div class="form-container relative w-full min-h-[320px]">
