@@ -14,13 +14,14 @@ defineEmits<{
     :class="{ 'register-active': activeView === 'register' }"
   >
     <a href="#login" @click.prevent="$emit('switch', 'login')"
-       class="tab-btn w-[130px] h-[30px] rounded-[5px] text-xs font-black tracking-widest no-underline flex items-center justify-center bg-transparent z-[1] transition-colors duration-[400ms] ease-in-out hover:bg-transparent max-[360px]:text-[11px]"
-       :class="activeView === 'login' ? 'text-primary' : 'text-white'">
+       class="tab-btn w-[130px] h-[30px] rounded-[5px] text-xs font-black tracking-widest no-underline flex items-center justify-center z-[1] transition-colors duration-[400ms] ease-in-out hover:bg-transparent max-[360px]:text-[11px]"
+       :class="activeView === 'login' ? 'text-primary bg-transparent' : 'text-white bg-white/10'">
       LOGIN
     </a>
+
     <a href="#register" @click.prevent="$emit('switch', 'register')"
-       class="tab-btn w-[130px] h-[30px] rounded-[5px] text-xs font-black tracking-widest no-underline flex items-center justify-center bg-transparent z-[1] transition-colors duration-[400ms] ease-in-out hover:bg-transparent max-[360px]:text-[11px]"
-       :class="activeView === 'register' ? 'text-primary' : 'text-white'">
+       class="tab-btn w-[130px] h-[30px] rounded-[5px] text-xs font-black tracking-widest no-underline flex items-center justify-center z-[1] transition-colors duration-[400ms] ease-in-out hover:bg-transparent max-[360px]:text-[11px]"
+       :class="activeView === 'register' ? 'text-primary bg-transparent' : 'text-white bg-white/10'">
       REGISTER
     </a>
   </div>

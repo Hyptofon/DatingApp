@@ -26,11 +26,7 @@ const frameClasses = computed(() => ({
 </template>
 
 <style scoped>
-/* Додаємо анімацію fadeIn до transition-group для гарного вигляду */
-/* Хоча у Tailwind-версії анімація керується JS, тут ми покладемо її на Vue Transition */
-/* Можливо, тут знадобиться <Transition name="slide"> в App.vue, але для простоти поки лишимо це */
 .frame {
-  /* Тимчасово перевизначаємо overflow, щоб уникнути подвійної прокрутки */
   overflow-y: hidden;
   overflow-x: hidden;
 }
