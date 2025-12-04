@@ -17,7 +17,7 @@ const frameClasses = computed(() => ({
     :class="props.isAuth ? 'bg-primary' : 'bg-bg-main'"
   >
     <div
-      class="frame w-[375px] h-[812px] shadow-[0_4px_20px_rgba(0,0,0,0.1)] flex flex-col relative overflow-hidden max-[500px]:w-full max-[500px]:h-screen max-[500px]:rounded-none max-[500px]:shadow-none"
+      class="frame w-[375px] h-[812px] shadow-[0_4px_20px_rgba(0,0,0,0.1)] flex flex-col relative overflow-y-auto max-[500px]:w-full max-[500px]:h-screen max-[500px]:rounded-none max-[500px]:shadow-none"
       :class="frameClasses"
     >
       <slot></slot>
@@ -26,8 +26,15 @@ const frameClasses = computed(() => ({
 </template>
 
 <style scoped>
+
+/* Для Chrome, Safari and Opera */
+.frame::-webkit-scrollbar {
+  display: none;
+}
+
+/* Для IE, Edge and Firefox */
 .frame {
-  overflow-y: hidden;
-  overflow-x: hidden;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 </style>
